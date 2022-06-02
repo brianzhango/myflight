@@ -9,16 +9,16 @@
         <div class="countries view content">
             <table class="table table-bordered" id="dataTable" cellspacing="0">
                 <tr>
+                    <th><?= __('Id') ?></th>
+                    <td><?= $this->Number->format($country->id) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Name') ?></th>
                     <td><?= h($country->name) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Code') ?></th>
                     <td><?= h($country->code) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($country->id) ?></td>
                 </tr>
             </table>
             <div class="related">
@@ -29,14 +29,12 @@
                         <tr>
                             <th><?= __('Id') ?></th>
                             <th><?= __('Name') ?></th>
-                            <th><?= __('Country Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($country->airlines as $airlines) : ?>
                         <tr>
                             <td><?= h($airlines->id) ?></td>
                             <td><?= h($airlines->name) ?></td>
-                            <td><?= h($airlines->country_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Airlines', 'action' => 'view', $airlines->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'Airlines', 'action' => 'edit', $airlines->id]) ?>
@@ -55,7 +53,6 @@
                     <table class="table table-bordered" id="dataTable" cellspacing="0">
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Country Id') ?></th>
                             <th><?= __('Latitude') ?></th>
                             <th><?= __('Longitude') ?></th>
                             <th><?= __('Name') ?></th>
@@ -64,7 +61,6 @@
                         <?php foreach ($country->airports as $airports) : ?>
                         <tr>
                             <td><?= h($airports->id) ?></td>
-                            <td><?= h($airports->country_id) ?></td>
                             <td><?= h($airports->latitude) ?></td>
                             <td><?= h($airports->longitude) ?></td>
                             <td><?= h($airports->name) ?></td>
