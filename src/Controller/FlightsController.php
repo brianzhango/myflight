@@ -18,7 +18,7 @@ class FlightsController extends AppController
      */
     public function index()
     {
-        $flights = $this->Flights->find()->contain(['Airports', 'Airlines']);
+        $flights = $this->Flights->find()->contain(['DepartingAirports', 'LandingAirports','GivenAirports','Airlines']);
 
         $this->set(compact('flights'));
     }
@@ -33,7 +33,7 @@ class FlightsController extends AppController
     public function view($id = null)
     {
         $flight = $this->Flights->get($id, [
-            'contain' => ['Airports', 'Airlines'],
+            'contain' => ['DepartingAirports','LandingAirports','GivenAirports','Airlines'],
         ]);
 
         $this->set(compact('flight'));
@@ -56,7 +56,7 @@ class FlightsController extends AppController
             }
             $this->Flash->error(__('The flight could not be saved. Please, try again.'));
         }
-        $airports = $this->Flights->Airports->find('list', ['limit' => 200])->all();
+        $airports = $this->fetchTable('Airports')->find('list', ['limit' => 200])->all();
         $airlines = $this->Flights->Airlines->find('list', ['limit' => 200])->all();
         $this->set(compact('flight', 'airports', 'airlines'));
     }
@@ -82,7 +82,7 @@ class FlightsController extends AppController
             }
             $this->Flash->error(__('The flight could not be saved. Please, try again.'));
         }
-        $airports = $this->Flights->Airports->find('list', ['limit' => 200])->all();
+        $airports = $this->fetchTable('Airports')->find('list', ['limit' => 200])->all();
         $airlines = $this->Flights->Airlines->find('list', ['limit' => 200])->all();
         $this->set(compact('flight', 'airports', 'airlines'));
     }

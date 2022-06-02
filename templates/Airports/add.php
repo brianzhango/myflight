@@ -17,7 +17,7 @@
     <div> 
         <br>
             <?php $options = [
-                    'zoom' => 6,
+                    'zoom' => 5,
                     'type' => 'R',
                     'geolocate' => true,
                     'div' => ['id' => 'mymap'],

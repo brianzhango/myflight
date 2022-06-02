@@ -28,10 +28,10 @@
                     <table class="table table-bordered" id="dataTable" cellspacing="0">
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Departing Airport Id') ?></th>
-                            <th><?= __('Landing Airport Id') ?></th>
-                            <th><?= __('Airline Id') ?></th>
-                            <th><?= __('Given Airport Id') ?></th>
+                            <th><?= __('Departing Airport') ?></th>
+                            <th><?= __('Landing Airport') ?></th>
+                            <th><?= __('Airline') ?></th>
+                            <th><?= __('Given Airport') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($airline->flights as $flights) : ?>

@@ -16,10 +16,10 @@
             <thead>
                 <tr>
                     <th><?= __('Flight Number') ?></th>
+                    <th><?= __('Airline') ?></th>
                     <th><?= __('Departing Airport') ?></th>
                     <th><?= __('Landing Airport') ?></th>
                     <th><?= __('Given Airport') ?></th>
-                    <th><?= __('Airline') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -27,14 +27,14 @@
                 <?php foreach ($flights as $flight): ?>
                 <tr>
                     <td><?= h($flight->flight_num) ?></td>
-                    <td><?= $flight->has('airport') ? $this->Html->link($flight->airport->name, ['controller' => 'Airports', 'action' => 'view', $flight->airport->id]) : '' ?></td>
-                    <td><?= $flight->has('airport') ? $this->Html->link($flight->airport->name, ['controller' => 'Airports', 'action' => 'view', $flight->airport->id]) : '' ?></td>
-                    <td><?= $flight->has('airport') ? $this->Html->link($flight->airport->name, ['controller' => 'Airports', 'action' => 'view', $flight->airport->id]) : '' ?></td>
                     <td><?= $flight->has('airline') ? $this->Html->link($flight->airline->name, ['controller' => 'Airlines', 'action' => 'view', $flight->airline->id]) : '' ?></td>
+                    <td><?= $flight->has('departing_airport') ? $this->Html->link($flight->departing_airport->name, ['controller' => 'Airports', 'action' => 'view', $flight->departing_airport->id]) : '' ?></td>
+                    <td><?= $flight->has('landing_airport') ? $this->Html->link($flight->landing_airport->name, ['controller' => 'Airports', 'action' => 'view', $flight->landing_airport->id]) : '' ?></td>
+                    <td><?= $flight->has('given_airport') ? $this->Html->link($flight->given_airport->name, ['controller' => 'Airports', 'action' => 'view', $flight->given_airport->id]) : '' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $flight->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $flight->id]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $flight->id], ['confirm' => __('Are you sure you want to delete # {0}?', $flight->id)]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $flight->id], ['confirm' => __('Are you sure you want to delete # {0}?', $flight->flight_num)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

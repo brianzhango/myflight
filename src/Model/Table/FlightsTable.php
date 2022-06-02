@@ -46,21 +46,24 @@ class FlightsTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Airports', [
+        $this->belongsTo('DepartingAirports', [
             'foreignKey' => 'departing_airport_id',
             'joinType' => 'INNER',
+            'className' => 'Airports',
         ]);
-        $this->belongsTo('Airports', [
+        $this->belongsTo('LandingAirports', [
             'foreignKey' => 'landing_airport_id',
             'joinType' => 'INNER',
+            'className' => 'Airports'
         ]);
         $this->belongsTo('Airlines', [
             'foreignKey' => 'airline_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('Airports', [
+        $this->belongsTo('GivenAirports', [
             'foreignKey' => 'given_airport_id',
             'joinType' => 'INNER',
+            'className' => 'Airports'
         ]);
     }
 
@@ -111,10 +114,10 @@ class FlightsTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
-        $rules->add($rules->existsIn('departing_airport_id', 'Airports'), ['errorField' => 'departing_airport_id']);
-        $rules->add($rules->existsIn('landing_airport_id', 'Airports'), ['errorField' => 'landing_airport_id']);
+        $rules->add($rules->existsIn('departing_airport_id', 'DepartingAirports'), ['errorField' => 'departing_airport_id']);
+        $rules->add($rules->existsIn('landing_airport_id', 'LandingAirports'), ['errorField' => 'landing_airport_id']);
         $rules->add($rules->existsIn('airline_id', 'Airlines'), ['errorField' => 'airline_id']);
-        $rules->add($rules->existsIn('given_airport_id', 'Airports'), ['errorField' => 'given_airport_id']);
+        $rules->add($rules->existsIn('given_airport_id', 'GivenAirports'), ['errorField' => 'given_airport_id']);
 
         return $rules;
     }

@@ -15,8 +15,9 @@
             echo $this->Form->control('longitude',['readonly'=>true]); ?>
     <div> 
         <br>
-            <?php $options = [
-                    'zoom' => 6,
+            <?php 
+                $options = [
+                    'zoom' => 10,
                     'type' => 'R',
                     'geolocate' => true,
                     'div' => ['id' => 'mymap'],
@@ -24,11 +25,11 @@
                         'navOptions' => ['style' => 'SMALL'], 
                         'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'LEFT_TOP']
                     ],
-                    'lat' => '-37.8136',
-                    'lng' => '144.9631',
+                    'lat' => $airport->latitude,
+                    'lng' => $airport->longitude,
                 ];
-                echo $this->GoogleMap->map($options);
-                $this->GoogleMap->addMarker(['lat' => h($airport->latitude), 'lng' => h($airport->longitude), 'title' => 'marker1']);
+                $map = $this->GoogleMap->map($options);
+                $this->GoogleMap->addMarker(['lat' => $airport->latitude, 'lng' => $airport->longitude, 'title' => 'marker1', 'icon' => $this->GoogleMap->iconSet('green', 'C')]);
             ?>
             <?php $mapclick = <<< EOF
                 map0.addListener("click", (mapsMouseEvent) => {
@@ -54,7 +55,8 @@
                 EOF ?>
             <?php echo $this->GoogleMap->addCustom($mapclick);
             
-            echo $this->GoogleMap->script();?>
+            echo $this->GoogleMap->script();
+            echo $map;?>
         </div>
         <br>
    <?= $this->Form->button(__('Submit'),['class' => 'btn btn-primary']) ?>

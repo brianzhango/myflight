@@ -39,13 +39,13 @@
                         'div' => ['id' => 'someothers'],
                         'map' => [
                             'navOptions' => ['style' => 'SMALL'], 
-                            'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'RIGHT_CENTER']
+                            'typeOptions' => ['style' => 'HORIZONTAL_BAR', 'pos' => 'TOP_LEFT']
                         ],
-                        'lat' => "-37.8136",
-                        'lng' => "144.9631",
+                        'lat' => $airport->latitude,
+                        'lng' => $airport->longitude,
                     ];
                     echo $this->GoogleMap->map($options);
-                    $this->GoogleMap->addMarker(['lat' => h($airport->latitude), 'lng' => h($airport->longitude), 'title' => 'Marker1']);
+                    $this->GoogleMap->addMarker(['lat' => $airport->latitude, 'lng' => $airport->longitude, 'title' => 'Marker1']);
                     
                 ?>
                 <?php
